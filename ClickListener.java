@@ -17,28 +17,31 @@ public class ClickListener implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		//will only play if no one has won or lost the game
 		if (TicTacToeGOOEY.win == 0) {
-			
+
 			game.played(x, y);
 			TicTacToeGOOEY.updateView();
-			
-			//1 == player win, 2 == computer win, 3 == draw
-			if (winner() == 1) {
+
+			//1 == player win, 2 == computer win
+			if (winner() == 1){
 				TicTacToeGOOEY.win = 1;
-			} else if (winner() == 2) {
+				TicTacToeGOOEY.human++;
+			}else if (winner() == 2){
 				TicTacToeGOOEY.win = 2;
-			} else if ((winner() == 0) && (game.getSize() == 9)) {
-				TicTacToeGOOEY.win = 3;
+				TicTacToeGOOEY.computer++;
+			}else if (game.getSize() == 9){
+				TicTacToeGOOEY.tie++;
 			}
+
 			//Endgame popup
-			if (winner() != 0) {
-				if (JOptionPane.showConfirmDialog(null, "Game over, " + game.getWin(TicTacToeGOOEY.win) 
-						+ " Play again?", "Tic Tac Toe", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-					if (TicTacToeGOOEY.win != 0){
-						game.resetBoard();
-					}
-				}else{
-					System.exit(0);
-				}
+			if (winner() != 0 || game.getSize() == 9) {
+				if (JOptionPane.showConfirmDialog(null, game.getWin(TicTacToeGOOEY.win) 
+						+"\n Human: "+ TicTacToeGOOEY.human
+						+"\n Computer: "+ TicTacToeGOOEY.computer
+						+"\n Ties: "+ TicTacToeGOOEY.tie
+						+"\nGame over. Play again?", "Tic Tac Toe", JOptionPane.YES_NO_OPTION, 
+						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+				 game.resetBoard();
+				}else System.exit(0);
 			}
 		}
 	}
