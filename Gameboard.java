@@ -4,6 +4,7 @@ import java.util.Random;
 public class Gameboard {
 	private String[][] board = new String[3][3];
 	private int size = 0;
+	
 
 	//returns the value of the spot
 	public String getValue(int x, int y) {
@@ -42,10 +43,6 @@ public class Gameboard {
 		}
 	}
 	
-	//returns the size/number of turns taken
-	public int getSize() {
-		return size;
-	}
 	//resets the game
 	public void resetBoard() {
 		for (int i = 0; i < 3; i++) {
@@ -60,9 +57,13 @@ public class Gameboard {
 	
 	//returns the win value as a string
 	public String getWin(int num) {
-		if (num == 1) return "you won!";
-		if (num == 2) return "you lost!";
-		if (num == 3) return "draw!";
-		else return "error";
+		if (num == 1) return "You won!";
+		if (num == 2) return "You lost!";
+		else return "It was a draw!";
+	}
+	
+	//returns the size/number of turns taken
+	public int getSize() {
+		return size;
 	}
 }
