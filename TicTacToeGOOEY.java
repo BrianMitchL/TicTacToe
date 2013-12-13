@@ -7,6 +7,9 @@ public class TicTacToeGOOEY {
 	static Gameboard board = new Gameboard();
 	static JButton[][] buttons = new JButton[3][3];
 	static int win = 0;
+	static int human = 0;
+	static int computer = 0;
+	static int tie = 0;
 
 	public static void updateView() {
 		String value = "";
